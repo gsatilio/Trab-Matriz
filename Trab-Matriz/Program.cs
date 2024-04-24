@@ -1,126 +1,100 @@
 ﻿//int[] nome = new int[10];
 //int[][] matriz = new int[3][3];
-int qtdelinhas = 3, qtdecolunas = 3;
-
-float[,] matriz1 = new float[qtdelinhas, qtdecolunas];
-float[,] matriz2 = new float[qtdelinhas, qtdecolunas];
-
-float[,] matrizadd = new float[qtdelinhas, qtdecolunas];
-float[,] matrizsub = new float[qtdelinhas, qtdecolunas];
-float[,] matrizmult = new float[qtdelinhas, qtdecolunas];
-float[,] matrizdiv = new  float[qtdelinhas, qtdecolunas];
-
-
+int tamanhoMatriz = 0, opcao = 0;
+string titulo = "";
+float[,] matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
+float[,] matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
+float[,] matriz3 = new float[tamanhoMatriz, tamanhoMatriz];
 void imprimirMatriz(float[,] matriz, string titulo)
 {
     Console.Write(titulo);
-    for (int linha = 0; linha < qtdelinhas; linha++)
+    for (int linha = 0; linha < tamanhoMatriz; linha++)
     {
         Console.WriteLine();
-        for (int coluna = 0; coluna < qtdecolunas; coluna++)
+        for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
         {
             Console.Write(matriz[linha, coluna] + " ");
         }
     }
     Console.WriteLine();
 }
-
-//criacao matriz 1
-for (int linha = 0; linha < qtdelinhas; linha++)
+void escolherTamanho()
 {
-    for(int coluna = 0; coluna < qtdecolunas; coluna++)
+    Console.WriteLine("Bem vindo ao Matriz Quadrada Simulator!");
+    while (tamanhoMatriz <= 0)
     {
-        matriz1[linha, coluna] = new Random().Next(1,20);
+        Console.WriteLine("Informe o nro de Linhas/Colunas de sua Matriz:");
+        tamanhoMatriz = int.Parse(Console.ReadLine());
     }
 }
-
-//criacao matriz 2
-for (int linha = 0; linha < qtdelinhas; linha++)
+void realizaOperacao(int tipo)
 {
-    for (int coluna = 0; coluna < qtdecolunas; coluna++)
+    matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
+    matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
+    matriz3 = new float[tamanhoMatriz, tamanhoMatriz];
+    criarMatriz(matriz1);
+    criarMatriz(matriz2);
+    imprimirMatriz(matriz1, "\nMATRIZ 1:");
+    imprimirMatriz(matriz2, "\nMATRIZ 2:");
+    for (int linha = 0; linha < tamanhoMatriz; linha++)
     {
-        matriz2[linha, coluna] = new Random().Next(1, 20);
-    }
-}
-imprimirMatriz(matriz1, "\nMATRIZ 1:");
-
-imprimirMatriz(matriz2, "\nMATRIZ 2:");
-
-// calcuna matriz 3
-for (int linha = 0;linha < qtdelinhas; linha++)
-{
-    for(int coluna = 0; coluna < qtdecolunas; coluna++)
-    {
-        matrizadd[linha, coluna] = matriz1[linha, coluna] + matriz2[linha, coluna];
-        matrizsub[linha, coluna] = matriz1[linha, coluna] - matriz2[linha, coluna];
-        matrizmult[linha, coluna] = matriz1[linha, coluna] * matriz2[linha, coluna];
-        matrizdiv[linha, coluna] = matriz1[linha, coluna] / matriz2[linha, coluna];
-    }
-}
-
-imprimirMatriz(matrizadd, "\nOperação de SOMA:");
-
-imprimirMatriz(matrizsub, "\nOperação de SUBTRAÇÃO:");
-
-imprimirMatriz(matrizmult, "\nOperação de MULTIPLICAÇÃO:");
-
-imprimirMatriz(matrizdiv, "\nOperação de DIVISÃO:");
-
-
-////////////////////////////
-///
-
-Console.WriteLine("\nReferente a Matriz 1:");
-
-float resultado = 0;
-Console.WriteLine("\nOperação de SOMA LINHAS:");
-for (int linha = 0; linha < qtdelinhas; linha++)
-{
-    int col = 0;
-    while (col < qtdecolunas)
-    {
-        resultado += matriz1[linha, col];
-        col++;
-    }
-    Console.WriteLine($"Linha: {linha} resulta em: {resultado}");
-    resultado = 0;
-}
-
-
-resultado = 0;
-Console.WriteLine("\nOperação de SOMA COLUNAS:");
-for (int col = 0; col < qtdecolunas; col++)
-{
-    int lin = 0;
-    while (lin < qtdelinhas)
-    {
-        resultado += matriz1[lin, col];
-        lin++;
-    }
-    Console.WriteLine($"Coluna: {col} resulta em: {resultado}");
-    resultado = 0;
-}
-
-float diag1 = 0;
-float diag2 = 0;
-int coldiag2 = qtdecolunas - 1;
-Console.WriteLine("\nOperação de SOMA  DIAGONAIS:");
-for (int linha = 0; linha < qtdelinhas; linha++)
-{
-    for (int col = 0; col < qtdecolunas; col++)
-    {
-        // diagonal esquerda para direita
-        if (linha == col) {
-            diag1 += matriz1[linha, col];
-        }
-        //diagonal direita para esquerda
-        if (col == coldiag2)
+        for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
         {
-            diag2 += matriz1[linha, coldiag2];
-            coldiag2--;
+            switch (tipo)
+            {
+                case 1:
+                    titulo = "\nOperação de SOMA";
+                    matriz3[linha, coluna] = matriz1[linha, coluna] + matriz2[linha, coluna];
+                    break;
+                case 2:
+                    titulo = "\nOperação de SUBTRAÇÃO";
+                    matriz3[linha, coluna] = matriz1[linha, coluna] - matriz2[linha, coluna];
+                    break;
+                case 3:
+                    titulo = "\nOperação de MULTIPLICAÇÃO";
+                    matriz3[linha, coluna] = matriz1[linha, coluna] * matriz2[linha, coluna];
+                    break;
+                case 4:
+                    titulo = "\nOperação de DIVISÃO";
+                    matriz3[linha, coluna] = matriz1[linha, coluna] / matriz2[linha, coluna];
+                    break;
+            }
+        }
+    }
+    imprimirMatriz(matriz3, $"{titulo}");
+}
+void Menu()
+{
+    while (opcao <= 0 || opcao > 5)
+    {
+        tamanhoMatriz = 0;
+        Console.Clear();
+        escolherTamanho();
+        Console.WriteLine($"Nro de Linhas informada:{tamanhoMatriz} e Nro de Colunas informada: {tamanhoMatriz}");
+        Console.WriteLine("Escolha a opção desejada:\n1 - Adição:\n2 - Subtração:\n3 - Multiplicação:\n4 - Divisão:\n5 - Para voltar ao Inicio.");
+        opcao = int.Parse(Console.ReadLine());
+        if (opcao == 5)
+        {
+            Console.Clear();
+            opcao = 0;
+            Menu();
+        }
+        else
+        {
+            realizaOperacao(opcao);
         }
     }
 }
+void criarMatriz(float[,] entradaMatriz)
+{
+    for (int linha = 0; linha < tamanhoMatriz; linha++)
+    {
+        for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
+        {
+            entradaMatriz[linha, coluna] = new Random().Next(1, 20);
+        }
+    }
+}
+Menu();*/
 
-Console.WriteLine($"Diagonal 1 resulta em: {diag1}");
-Console.WriteLine($"Diagonal 2 resulta em: {diag2}");
+
