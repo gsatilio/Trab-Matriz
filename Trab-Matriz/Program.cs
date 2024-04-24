@@ -1,21 +1,5 @@
 ﻿int tamanhoMatriz = 0, opcao = 0;
 string titulo = "";
-float[,] matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
-float[,] matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
-float[,] matriz3 = new float[tamanhoMatriz, tamanhoMatriz];
-void imprimirMatriz(float[,] matriz, string titulo)
-{
-    Console.Write(titulo);
-    for (int linha = 0; linha < tamanhoMatriz; linha++)
-    {
-        Console.WriteLine();
-        for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
-        {
-            Console.Write(matriz[linha, coluna] + " ");
-        }
-    }
-    Console.WriteLine();
-}
 void escolherTamanho()
 {
     Console.WriteLine("Bem vindo ao Matriz Quadrada Simulator!");
@@ -25,25 +9,36 @@ void escolherTamanho()
         tamanhoMatriz = int.Parse(Console.ReadLine());
     }
 }
-void criarMatriz(float[,] entradaMatriz)
+void criarImprimirMatriz(float[,] entradaMatriz, string titulo, Boolean criar)
 {
-    for (int linha = 0; linha < tamanhoMatriz; linha++)
+    if (criar)
     {
-        for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
+        for (int linha = 0; linha < tamanhoMatriz; linha++)
         {
-            entradaMatriz[linha, coluna] = new Random().Next(1, 20);
+            for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
+            {
+                entradaMatriz[linha, coluna] = new Random().Next(1, 100);
+            }
         }
     }
+    Console.Write(titulo);
+    for (int linha = 0; linha < tamanhoMatriz; linha++)
+    {
+        Console.WriteLine();
+        for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
+        {
+            Console.Write(entradaMatriz[linha, coluna] + " ");
+        }
+    }
+    Console.WriteLine();
 }
 void realizaOperacao(int tipo)
 {
-    matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
-    matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
-    matriz3 = new float[tamanhoMatriz, tamanhoMatriz];
-    criarMatriz(matriz1);
-    criarMatriz(matriz2);
-    imprimirMatriz(matriz1, "\nMATRIZ 1:");
-    imprimirMatriz(matriz2, "\nMATRIZ 2:");
+    float[,] matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
+    float[,] matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
+    float[,] matriz3 = new float[tamanhoMatriz, tamanhoMatriz];
+    criarImprimirMatriz(matriz1, "\nMatriz 1 Gerada:", true);
+    criarImprimirMatriz(matriz2, "\nMatriz 2 Gerada:", true);
     for (int linha = 0; linha < tamanhoMatriz; linha++)
     {
         for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
@@ -69,7 +64,7 @@ void realizaOperacao(int tipo)
             }
         }
     }
-    imprimirMatriz(matriz3, $"{titulo}");
+    criarImprimirMatriz(matriz3, $"\n{titulo} para Matriz 3:", false);
 }
 void Menu()
 {
