@@ -1,6 +1,4 @@
-﻿//int[] nome = new int[10];
-//int[][] matriz = new int[3][3];
-int tamanhoMatriz = 0, opcao = 0;
+﻿int tamanhoMatriz = 0, opcao = 0;
 string titulo = "";
 float[,] matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
 float[,] matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
