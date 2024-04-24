@@ -25,6 +25,16 @@ void escolherTamanho()
         tamanhoMatriz = int.Parse(Console.ReadLine());
     }
 }
+void criarMatriz(float[,] entradaMatriz)
+{
+    for (int linha = 0; linha < tamanhoMatriz; linha++)
+    {
+        for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
+        {
+            entradaMatriz[linha, coluna] = new Random().Next(1, 20);
+        }
+    }
+}
 void realizaOperacao(int tipo)
 {
     matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
@@ -80,16 +90,6 @@ void Menu()
         else
         {
             realizaOperacao(opcao);
-        }
-    }
-}
-void criarMatriz(float[,] entradaMatriz)
-{
-    for (int linha = 0; linha < tamanhoMatriz; linha++)
-    {
-        for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
-        {
-            entradaMatriz[linha, coluna] = new Random().Next(1, 20);
         }
     }
 }
