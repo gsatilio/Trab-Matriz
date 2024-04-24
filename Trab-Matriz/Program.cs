@@ -1,5 +1,8 @@
 ﻿int tamanhoMatriz = 0, opcao = 0;
 string titulo = "";
+float[,] matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
+float[,] matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
+float[,] matriz3 = new float[tamanhoMatriz, tamanhoMatriz];
 void escolherTamanho()
 {
     Console.WriteLine("Bem vindo ao Matriz Quadrada Simulator!");
@@ -34,9 +37,9 @@ void criarImprimirMatriz(float[,] entradaMatriz, string titulo, Boolean criar)
 }
 void realizaOperacao(int tipo)
 {
-    float[,] matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
-    float[,] matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
-    float[,] matriz3 = new float[tamanhoMatriz, tamanhoMatriz];
+    matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
+    matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
+    matriz3 = new float[tamanhoMatriz, tamanhoMatriz];
     criarImprimirMatriz(matriz1, "\nMatriz 1 Gerada:", true);
     criarImprimirMatriz(matriz2, "\nMatriz 2 Gerada:", true);
     for (int linha = 0; linha < tamanhoMatriz; linha++)
