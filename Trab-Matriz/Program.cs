@@ -1,4 +1,4 @@
-﻿int tamanhoMatriz = 0, opcao = 0;
+﻿int tamanhoMatriz = 0, opcao = 0, random1 = 0, random2 = 0;
 string titulo = "";
 float[,] matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
 float[,] matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
@@ -11,6 +11,14 @@ void escolherTamanho()
         Console.WriteLine("Informe o nro de Linhas/Colunas de sua Matriz:");
         tamanhoMatriz = int.Parse(Console.ReadLine());
     }
+    Console.WriteLine("Informe o primeiro numero entre os aleatorios:");
+    random1 = int.Parse(Console.ReadLine());
+
+    while (random2 < random1)
+    {
+        Console.WriteLine("Informe o segundo numero entre os aleatorios:");
+        random2 = int.Parse(Console.ReadLine());
+    }
 }
 void criarImprimirMatriz(float[,] entradaMatriz, string titulo, Boolean criar)
 {
@@ -20,7 +28,7 @@ void criarImprimirMatriz(float[,] entradaMatriz, string titulo, Boolean criar)
         {
             for (int coluna = 0; coluna < tamanhoMatriz; coluna++)
             {
-                entradaMatriz[linha, coluna] = new Random().Next(1, 100);
+                entradaMatriz[linha, coluna] = new Random().Next(random1, random2);
             }
         }
     }
@@ -67,7 +75,7 @@ void realizaOperacao(int tipo)
             }
         }
     }
-    criarImprimirMatriz(matriz3, $"\n{titulo} para Matriz 3:", false);
+    criarImprimirMatriz(matriz3, $"{titulo} para Matriz 3:", false);
 }
 void Menu()
 {
