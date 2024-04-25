@@ -11,9 +11,12 @@ void escolherTamanho()
         Console.WriteLine("Informe o nro de Linhas/Colunas de sua Matriz:");
         tamanhoMatriz = int.Parse(Console.ReadLine());
     }
+    sorteioMatriz();
+}
+void sorteioMatriz()
+{
     Console.WriteLine("Informe o primeiro numero entre os aleatorios:");
     random1 = int.Parse(Console.ReadLine());
-
     while (random2 < random1)
     {
         Console.WriteLine("Informe o segundo numero entre os aleatorios:");
@@ -89,8 +92,10 @@ void Menu()
         opcao = int.Parse(Console.ReadLine());
         if (opcao == 5)
         {
-            Console.Clear();
+            random1 = 0;
+            random2 = 0;
             opcao = 0;
+            Console.Clear();
             Menu();
         }
         else
