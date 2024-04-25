@@ -1,4 +1,6 @@
-﻿int tamanhoMatriz = 0, opcao = 0, random1 = 0, random2 = 0;
+﻿using System.Reflection.Metadata.Ecma335;
+
+int tamanhoMatriz = 0, opcao = 0, random1 = 0, random2 = 0;
 string titulo = "";
 float[,] matriz1 = new float[tamanhoMatriz, tamanhoMatriz];
 float[,] matriz2 = new float[tamanhoMatriz, tamanhoMatriz];
@@ -11,7 +13,6 @@ void escolherTamanho()
         Console.WriteLine("Informe o nro de Linhas/Colunas de sua Matriz:");
         tamanhoMatriz = int.Parse(Console.ReadLine());
     }
-    sorteioMatriz();
 }
 void sorteioMatriz()
 {
@@ -87,6 +88,7 @@ void Menu()
         tamanhoMatriz = 0;
         Console.Clear();
         escolherTamanho();
+        sorteioMatriz();
         Console.WriteLine($"Nro de Linhas informada:{tamanhoMatriz} e Nro de Colunas informada: {tamanhoMatriz}");
         Console.WriteLine("Escolha a opção desejada:\n1 - Adição:\n2 - Subtração:\n3 - Multiplicação:\n4 - Divisão:\n5 - Para voltar ao Inicio.");
         opcao = int.Parse(Console.ReadLine());
